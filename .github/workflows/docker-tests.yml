@@ -26,10 +26,11 @@ jobs:
         run: mkdir -p allure-results
 
       - name: Run tests inside Docker container
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
         run: |
-          docker run --rm --env API_KEY="$API_KEY" -v "${{ github.workspace }}/allure-results:/app/allure-results" reqres-api-testing-framework
+          docker run --rm \
+            -e API_KEY=${{ secrets.API_KEY }} \
+            -v "${{ github.workspace }}/allure-results:/app/allure-results" \
+            reqres-api-testing-framework
 
       - name: Upload Allure results as artifact
         uses: actions/upload-artifact@v4
