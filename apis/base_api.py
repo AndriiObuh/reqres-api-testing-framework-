@@ -13,7 +13,10 @@ class BaseAPI:
     """Base class for making API requests with headers and logging."""
 
     BASE_URL = "https://reqres.in/"
-    HEADERS = {"x-api-key": os.environ.get("API_KEY")}
+
+    def __init__(self):
+        self.HEADERS = {"x-api-key": os.environ.get("API_KEY")}
+
 
     def request(self, method: str, endpoint: str, **kwargs):
         """Send an HTTP request and return the response."""
