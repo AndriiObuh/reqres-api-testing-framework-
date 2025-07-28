@@ -13,22 +13,24 @@ This is an API automation testing framework for [reqres.in](https://reqres.in) u
 
 ---
 
-Installation
+##  Installation
 
 ```bash
 git clone git@github.com:AndriiObuh/reqres-api-testing-framework-.git
 cd reqres-api-testing-framework-
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements.txt```
 
 
-Run Tests
+##  Run Tests
 
+```bash
 pytest --alluredir=allure-results
 allure serve allure-results
+```
 
-Project Structure
+##  Project Structure
 
 .
 ├── apis/
@@ -46,18 +48,21 @@ Project Structure
 ├── requirements.txt
 └── README.md
 
-Allure Reporting
+##  Allure Reporting
 
 1. Install Allure:
 
+```bash
 brew install allure            # for Mac
 scoop install allure           # for Windows
+```
 
 2. Run and open report:
 
+```bash
 pytest --alluredir=allure-results
 allure serve allure-results
+```
 
-Author
+##  Author
 Andrii Obuh
-
