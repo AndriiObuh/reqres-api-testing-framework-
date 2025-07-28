@@ -1,39 +1,39 @@
-name: Docker Tests
+name: Run API Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
-  build_and_test:
+  api-tests:
     runs-on: ubuntu-latest
 
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 
-      - name: Build Docker image
-        run: docker build -t reqres-api-testing-framework .
-
-      - name: Prepare allure-results folder
-        run: mkdir -p allure-results
-
-      - name: Run tests inside Docker container
+      - name: Install dependencies
         run: |
-          docker run --rm \
-            -e API_KEY=${{ secrets.API_KEY }} \
-            -v "${{ github.workspace }}/allure-results:/app/allure-results" \
-            reqres-api-testing-framework
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Upload Allure results as artifact
+      - name: Run tests with Allure
+        run: |
+          pytest --alluredir=allure-results
+
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
+

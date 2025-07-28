@@ -16,8 +16,12 @@ class BaseAPI:
     """Base class for making API requests with headers and logging."""
 
     BASE_URL = "https://reqres.in/"
-    API_KEY = os.getenv("API_KEY")
-    HEADERS = {"x-api-key": API_KEY}
+
+    def get_headers(self):
+        api_key = os.getenv("API_KEY")
+        if not api_key:
+            raise ValueError("API_KEY not found. Make sure it's set in .env or passed via environment.")
+        return {"x-api-key": api_key}
 
 
     def request(self, method: str, endpoint: str, **kwargs):
