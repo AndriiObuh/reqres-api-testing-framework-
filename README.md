@@ -20,7 +20,8 @@ git clone git@github.com:AndriiObuh/reqres-api-testing-framework-.git
 cd reqres-api-testing-framework-
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 
 ##  Run Tests
@@ -31,7 +32,7 @@ allure serve allure-results
 ```
 
 ##  Project Structure
-
+```plaintext
 .
 ├── apis/
 │   ├── base_api.py
@@ -47,6 +48,7 @@ allure serve allure-results
 ├── pytest.ini
 ├── requirements.txt
 └── README.md
+```
 
 ##  Allure Reporting
 
