@@ -4,21 +4,18 @@ import requests
 from loguru import logger
 from dotenv import load_dotenv
 
-# Загрузка .env только если API_KEY нет в окружении
 if not os.getenv("API_KEY"):
     load_dotenv()
 
 os.makedirs("logs", exist_ok=True)
 logger.add("logs/api.log", rotation="500 KB", retention="10 days", level="INFO")
 
-
 class BaseAPI:
     """Base class for making API requests with headers and logging."""
 
     BASE_URL = "https://reqres.in"
 
-    @property
-    def HEADERS(self):
+    def get_headers(self):
         api_key = os.getenv("API_KEY")
         if not api_key:
             raise ValueError("API_KEY not found. Make sure it's set in .env or passed via environment.")
@@ -27,7 +24,8 @@ class BaseAPI:
     def request(self, method: str, endpoint: str, **kwargs):
         """Send an HTTP request and return the response."""
         url = f"{self.BASE_URL}{endpoint}"
-        masked_headers = self.HEADERS.copy()
+        headers = self.get_headers()
+        masked_headers = headers.copy()
         if "x-api-key" in masked_headers:
             masked_headers["x-api-key"] = "****MASKED****"
 
@@ -36,6 +34,6 @@ class BaseAPI:
         logger.info(f"Request data: {kwargs}")
 
         with allure.step(f"{method.upper()} {endpoint}"):
-            response = requests.request(method, url, headers=self.HEADERS, **kwargs)
+            response = requests.request(method, url, headers=headers, **kwargs)
             logger.info(f"Response: {response.status_code} {response.text}")
             return response
