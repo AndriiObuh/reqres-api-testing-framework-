@@ -2,9 +2,12 @@ import os
 import allure
 import requests
 from loguru import logger
-# from dotenv import load_dotenv
-#
-# load_dotenv()
+from dotenv import load_dotenv
+
+# Load .env only if not running in CI
+if not os.getenv("API_KEY"):
+    load_dotenv()
+
 os.makedirs("logs", exist_ok=True)
 logger.add("logs/api.log", rotation="500 KB", retention="10 days", level="INFO")
 
@@ -13,10 +16,8 @@ class BaseAPI:
     """Base class for making API requests with headers and logging."""
 
     BASE_URL = "https://reqres.in/"
-
-    def get_headers(self):
-        api_key = os.getenv("API_KEY")
-        return {"x-api-key": api_key} if api_key else {}
+    API_KEY = os.getenv("API_KEY")
+    HEADERS = {"x-api-key": API_KEY}
 
 
     def request(self, method: str, endpoint: str, **kwargs):
