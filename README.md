@@ -24,14 +24,14 @@ pip install -r requirements.txt
 
 
 ## Environment Setup
-- Local:
+### Local:
 Create a .env file in the project root (this file is in .gitignore) with your API key:
 ```bash
 API_KEY=your_api_key_here
 ```
 Replace your_api_key_here with your actual API key.
 
-- CI / GitHub Actions:
+### CI / GitHub Actions:
 The API key must be stored securely in GitHub Secrets:
 Go to Settings → Secrets and variables → Actions → Repository secrets and add:
   - Name: API_KEY
@@ -88,23 +88,30 @@ Test results with Allure reports are uploaded as workflow artifacts.
 ```
 
 ## Allure Reporting
-Install Allure:
+### Install Allure:
 
-macOS:
+#### Linux (using apt for Ubuntu/Debian):
+```bash
+sudo apt-add-repository ppa:qameta/allure
+sudo apt-get update
+sudo apt-get install allure
+```
+
+#### macOS:
 ```bash
 brew install allure
 ```
 
-Windows:
+#### Windows:
 ```bash
 scoop install allure
 ```
 
-Run and open report:
+#### Run and open report:
 ```bash
 pytest --alluredir=allure-results
 allure serve allure-results
 ```
 
 ## Author
-Andrii Obuh
+### Andrii Obuh
