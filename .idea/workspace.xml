@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44b19672-4cc8-4b86-83f6-845769158618" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test_env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/docker-tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-tests.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apis/base_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/apis/base_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_env.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

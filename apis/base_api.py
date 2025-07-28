@@ -4,7 +4,7 @@ import requests
 from loguru import logger
 from dotenv import load_dotenv
 
-# Load .env only if not running in CI
+# Загрузка .env только если API_KEY нет в окружении
 if not os.getenv("API_KEY"):
     load_dotenv()
 
@@ -15,14 +15,14 @@ logger.add("logs/api.log", rotation="500 KB", retention="10 days", level="INFO")
 class BaseAPI:
     """Base class for making API requests with headers and logging."""
 
-    BASE_URL = "https://reqres.in/"
+    BASE_URL = "https://reqres.in"
 
-    def get_headers(self):
+    @property
+    def HEADERS(self):
         api_key = os.getenv("API_KEY")
         if not api_key:
             raise ValueError("API_KEY not found. Make sure it's set in .env or passed via environment.")
         return {"x-api-key": api_key}
-
 
     def request(self, method: str, endpoint: str, **kwargs):
         """Send an HTTP request and return the response."""
