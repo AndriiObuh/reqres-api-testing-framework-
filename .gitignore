@@ -1,0 +1,24 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+.env
+
+# IDE config (PyCharm)
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Allure
+allure-results/
+allure-report/
+
+# Pytest cache
+.pytest_cache/
+.cache/
