@@ -36,7 +36,7 @@ jobs:
           docker run --rm --env API_KEY=$API_KEY -v ${{ github.workspace }}/allure-results:/app/allure-results reqres-api-testing-framework
 
       - name: Upload Allure results as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
