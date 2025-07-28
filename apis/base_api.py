@@ -2,9 +2,9 @@ import os
 import allure
 import requests
 from loguru import logger
-from dotenv import load_dotenv
-
-load_dotenv()
+# from dotenv import load_dotenv
+#
+# load_dotenv()
 os.makedirs("logs", exist_ok=True)
 logger.add("logs/api.log", rotation="500 KB", retention="10 days", level="INFO")
 
